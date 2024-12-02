@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Information</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Schools Management API Documentation</h1>
+            <p>This API allows for managing school data, including adding new schools, retrieving school information by EMIS number, and updating teacher and learner numbers.</p>
+        </header>
+
+        <!-- Table to display the schools -->
+        <table id="schoolsTable" class="table">
+            <thead>
+                <tr>
+                    <th>EMIS Number</th>
+                    <th>Institution Name</th>
+                    <th>Number of Teachers</th>
+                    <th>Number of Learners</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated dynamically -->
+            </tbody>
+        </table>
+
+        <!-- Search by EMIS Form -->
+        <div class="search-container">
+            <input type="number" id="emisSearch" placeholder="Enter EMIS number" />
+            <button id="searchButton">Search</button>
+        </div>
+
+         <!-- Pagination Controls -->
+         <div id="paginationDiv" class="pagination"></div>
+
+        <!-- Form to add a school -->
+        <div class="form">
+            <h3>Add a New School</h3>
+            <form id="addSchoolForm">
+                <label for="natemis">EMIS Number:</label>
+                <input type="text" id="natemis" name="natemis" required><br>
+            
+                <label for="institution_name">Institution Name:</label>
+                <input type="text" id="institution_name" name="institution_name" required><br>
+            
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" required><br>
+            
+                <label for="sector">Sector:</label>
+                <input type="text" id="sector" name="sector" required><br>
+            
+                <label for="type_doe">Type DOE:</label>
+                <input type="text" id="type_doe" name="type_doe" required><br>
+            
+                <label for="phase">Phase:</label>
+                <input type="text" id="phase" name="phase" required><br>
+            
+                <label for="specialization">Specialization:</label>
+                <input type="text" id="specialization" name="specialization" required><br>
+            
+                <label for="ownerland">Owner Land:</label>
+                <input type="text" id="ownerland" name="ownerland" required><br>
+            
+                <label for="ownerbuild">Owner Build:</label>
+                <input type="text" id="ownerbuild" name="ownerbuild" required><br>
+            
+                <label for="ownership">Ownership:</label>
+                <input type="text" id="ownership" name="ownership" required><br>
+            
+                <label for="magisterial_district">Magisterial District:</label>
+                <input type="text" id="magisterial_district" name="magisterial_district" required><br>
+            
+                <label for="dmunname">District Municipality:</label>
+                <input type="text" id="dmunname" name="dmunname" required><br>
+            
+                <label for="township_village">Township/Village:</label>
+                <input type="text" id="township_village" name="township_village"><br>
+            
+                <label for="suburb">Suburb:</label>
+                <input type="text" id="suburb" name="suburb"><br>
+            
+                <label for="town_city">Town/City:</label>
+                <input type="text" id="town_city" name="town_city"><br>
+            
+                <label for="streetaddress">Street Address:</label>
+                <input type="text" id="streetaddress" name="streetaddress" required><br>
+            
+                <label for="postaladdress">Postal Address:</label>
+                <input type="text" id="postaladdress" name="postaladdress"><br>
+            
+                <label for="telephone">Telephone:</label>
+                <input type="text" id="telephone" name="telephone"><br>
+            
+                <label for="facsimile">Facsimile:</label>
+                <input type="text" id="facsimile" name="facsimile"><br>
+            
+                <label for="registrationdate">Registration Date:</label>
+                <input type="date" id="registrationdate" name="registrationdate"><br>
+            
+                <label for="educator_number_2017">Educator Number (2017):</label>
+                <input type="number" id="educator_number_2017" name="educator_number_2017"><br>
+            
+                <label for="learner_number_2017">Learner Number (2017):</label>
+                <input type="number" id="learner_number_2017" name="learner_number_2017"><br>
+            
+                <button type="submit">Add School</button>
+            </form> 
+        </div>
+        <!-- Form to update the number of teachers -->
+        <div class="form">
+            <h3>Update Number of Teachers</h3>
+            <form id="updateTeachersForm" onsubmit="updateTeachers(event)">
+                <input type="text" id="teacherEmis" placeholder="EMIS Number" required />
+                <input type="number" id="newTeacherCount" placeholder="New Number of Teachers" required />
+                <button type="submit">Update Teachers</button>
+            </form>
+        </div>
+
+        <!-- Form to update the number of learners -->
+        <div class="form">
+            <h3>Update Number of Learners</h3>
+            <form id="updateLearnersForm" onsubmit="updateLearners(event)">
+                <input type="text" id="learnerEmis" placeholder="EMIS Number" required />
+                <input type="number" id="newLearnerCount" placeholder="New Number of Learners" required />
+                <button type="submit">Update Learners</button>
+            </form>
+        </div>
+
+        <!-- API Documentation Section -->
+        <section class="api-docs">
+            <h2>API Endpoints</h2>
+
+            <!-- Add School Endpoint -->
+            <div class="endpoint">
+                <h3>1. Add a New School</h3>
+                <p><strong>POST</strong> <code>/api/v1/schools/</code></p>
+                <p>This endpoint allows you to add a new school to the database. The school data will be stored for further processing and retrieval.</p>
+
+                <h4>Request Body:</h4>
+                <pre><code>{
+    "natemis": "800035507",
+    "institution_name": "A Petit Pas",
+    "status": "OPEN",
+    "sector": "INDEPENDENT",
+    "type_doe": "ORDINARY SCHOOL",
+    "phase": "PRIMARY SCHOOL",
+    "specialization": "ORDINARY SCHOOL",
+    "ownerland": "PUBLIC",
+    "ownerbuild": "PRIVATE",
+    "ownership": "PRIVATE",
+    "magisterial_district": "MAPULANENG",
+    "dmunname": "Bushbuckridge",
+    "township_village": "COLLEGEVIEW",
+    "suburb": "COLLEGEVIEW",
+    "town_city": "BUSHBUCKRIDGE",
+    "streetaddress": "216 COLLEGE VIEW, COLLEGEVIEW BUSHBUCKRIDGE 1280",
+    "postaladdress": "PO BOX 849, BUSHBUCKRIDGE, 1280",
+    "telephone": "0137991551",
+    "facsimile": "0137991551",
+    "registrationdate": "23-Jun-10",
+    "educator_number_2017": null,
+    "learner_number_2017": null
+}</code></pre>
+
+                <h4>Response:</h4>
+                <pre><code>200 OK: School successfully added</code></pre>
+                <p>If the school is added successfully, the response will include a 200 status with a success message. If there is any error, appropriate error handling will be included in the response.</p>
+            </div>
+
+            <!-- Get School by EMIS Endpoint -->
+            <div class="endpoint">
+                <h3>2. Get a School by EMIS Number</h3>
+                <p><strong>GET</strong> <code>/api/v1/schools/:natemis</code></p>
+                <p>This endpoint allows you to retrieve information about a specific school based on its EMIS number.</p>
+
+                <h4>Example Request:</h4>
+                <pre><code>GET http://localhost:3000/api/v1/schools/800035507</code></pre>
+
+                <h4>Response:</h4>
+                <pre><code>200 OK: {
+    "natemis": "800035507",
+    "institution_name": "A Petit Pas",
+    "status": "OPEN",
+    "sector": "INDEPENDENT",
+    "type_doe": "ORDINARY SCHOOL",
+    "phase": "PRIMARY SCHOOL",
+    "specialization": "ORDINARY SCHOOL",
+    "ownerland": "PUBLIC",
+    "ownerbuild": "PRIVATE",
+    "ownership": "PRIVATE",
+    "magisterial_district": "MAPULANENG",
+    "dmunname": "Bushbuckridge",
+    "township_village": "COLLEGEVIEW",
+    "suburb": "COLLEGEVIEW",
+    "town_city": "BUSHBUCKRIDGE",
+    "streetaddress": "216 COLLEGE VIEW, COLLEGEVIEW BUSHBUCKRIDGE 1280",
+    "postaladdress": "PO BOX 849, BUSHBUCKRIDGE, 1280",
+    "telephone": "0137991551",
+    "facsimile": "0137991551",
+    "registrationdate": "23-Jun-10",
+    "educator_number_2017": null,
+    "learner_number_2017": null
+}</code></pre>
+
+                <p>The response will return the complete details of the school as per the provided EMIS number. If the EMIS number does not exist, a 404 error will be returned.</p>
+            </div>
+
+            <!-- Update Teacher Number Endpoint -->
+            <div class="endpoint">
+                <h3>3. Update the Number of Teachers</h3>
+                <p><strong>PUT</strong> <code>/api/v1/schools/teachers/:natemis</code></p>
+                <p>Use this endpoint to update the number of teachers for a specific school by its EMIS number.</p>
+
+                <h4>Request Body:</h4>
+                <pre><code>{
+    "educator_number_2017": 50
+}</code></pre>
+
+                <h4>Example Request:</h4>
+                <pre><code>PUT http://localhost:3000/api/v1/schools/teachers/800035507</code></pre>
+
+                <h4>Response:</h4>
+                <pre><code>200 OK: Number of teachers updated</code></pre>
+                <p>If the update is successful, a 200 OK status will be returned. In case of an error, an appropriate error message will be provided in the response.</p>
+            </div>
+
+            <!-- Update Learner Number Endpoint -->
+            <div class="endpoint">
+                <h3>4. Update the Number of Learners</h3>
+                <p><strong>PUT</strong> <code>/api/v1/schools/learners/:natemis</code></p>
+                <p>Use this endpoint to update the number of learners for a specific school by its EMIS number.</p>
+
+                <h4>Request Body:</h4>
+                <pre><code>{
+    "learner_number_2017": 800
+}</code></pre>
+
+                <h4>Example Request:</h4>
+                <pre><code>PUT http://localhost:3000/api/v1/schools/learners/800035507</code></pre>
+
+                <h4>Response:</h4>
+                <pre><code>200 OK: Number of learners updated</code></pre>
+                <p>If the update is successful, a 200 OK status will be returned. If the school with the provided EMIS number doesn't exist, a 404 error will be returned.</p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
