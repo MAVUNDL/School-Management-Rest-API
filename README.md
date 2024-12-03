@@ -22,10 +22,12 @@ This project provides an API to manage school records in a PostgreSQL database. 
 
 ## Installation
 
-To get started with this project, you'll need to clone the repository and install the necessary dependencies.
+To get started with this project, you'll need to clone the repository and install the necessary dependencies. Ensure you have node.js in your device.
 
 ### Clone the repository:
 
 ```bash
 git clone https://github.com/your-username/school-management-api.git
 cd school-management-api
+npm install
+node server.js
