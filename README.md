@@ -9,8 +9,6 @@ This is a backend API for managing school data, including school information, nu
 - [Configuration](#configuration)
 - [API Endpoints](#api-endpoints)
 - [Running the Application](#running-the-application)
-- [Deployment](#deployment)
-- [License](#license)
 
 ## Project Overview
 
