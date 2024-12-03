@@ -97,3 +97,7 @@ To start the server locally, use the following command:
  node server.js
 ```
 - The API will be available at http://localhost:3000.
+
+<a href="https://trackgit.com">
+<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/m48kuvsznynqyiqb4mm4" alt="trackgit-views" />
+</a>
