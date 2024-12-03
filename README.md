@@ -64,7 +64,7 @@ Connect to the database and check if the tables and data are properly restored:
 - This should list all the tables in the schools database.
 
 ### Configuration
-Set up environment variables to connect the API to your local PostgreSQL database. Create a .env file in the root directory with the following content:
+Set up environment variables to connect the API to your local PostgreSQL database. Update the .env file in the root directory with the following content:
 
 ```
   CONNECTIONSTRING=postgresql://<your-username>:<your-password>@localhost:5432/schools
